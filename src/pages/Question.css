@@ -9,3 +9,6 @@
   color: white;
   box-shadow: 0 0 1px black;
 }
+.border{
+  border-radius: 10px !important;
+}

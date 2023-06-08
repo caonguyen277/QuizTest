@@ -12,30 +12,13 @@ import Time from "./Time.js";
 const getRandomInt = (max) => {
   return Math.floor(Math.random() * Math.floor(max));
 };
-
 const Questions = () => {
   const {
-    question_category,
-    question_difficulty,
-    question_type,
-    amount_of_question,
-    score,
+    score
   } = useSelector((state) => state);
   const history = useHistory();
   const dispatch = useDispatch();
   const [selected, setSelected] = useState();
-  let apiUrl = `/api.php?amount=${amount_of_question}`;
-  if (question_category) {
-    apiUrl = apiUrl.concat(`&category=${question_category}`);
-  }
-  if (question_difficulty) {
-    apiUrl = apiUrl.concat(`&difficulty=${question_difficulty}`);
-  }
-  if (question_type) {
-    apiUrl = apiUrl.concat(`&type=${question_type}`);
-  }
-
-  // const { response, loading } = useAxios({ url: apiUrl });
   const { response, loading } = useAxios({
     url: "https://opentdb.com/api.php?amount=5",
   });
@@ -62,7 +45,6 @@ const Questions = () => {
       </Box>
     );
   }
-
   const handleClickAnswer = (e) => {
     const question = response.results[questionIndex];
     setSelected(e.target.textContent);
@@ -70,12 +52,6 @@ const Questions = () => {
       dispatch(handleScoreChange(score + 1));
     } else {
     }
-
-    // if (questionIndex + 1 < response.results.length) {
-    //   setQuestionIndex(questionIndex + 1);
-    // } else {
-    //   history.push("/score");
-    // }
   };
   const handleClickNext = () => {
     setSelected();
@@ -119,12 +95,6 @@ const Questions = () => {
           {questionIndex + 1 !== response.results.length ? "Next" : "Submit"}
         </Button>
       </Box>
-      <Box mt={5}>
-        Score: {score} / {response.results.length}
-      </Box>
-      {/* <Box mt={5}>
-        {time.sec}
-      </Box> */}
     </Box>
   );
 };

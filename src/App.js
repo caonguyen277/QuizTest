@@ -4,7 +4,7 @@ import Questions from "./pages/Questions";
 import FinalScreen from "./pages/FinalScreen";
 import { Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-
+import robot from"../src//img//robot.jpg";
 function App() {
   return (
     <Router>
@@ -12,6 +12,7 @@ function App() {
         <Box textAlign="center" mt={5}>
           <Switch>
             <Route path="/" exact>
+              <img width = "100%" src={robot} alt="image"></img>
               <Typography variant="h2" fontWeight="bold">
                 Quiz App
               </Typography>
